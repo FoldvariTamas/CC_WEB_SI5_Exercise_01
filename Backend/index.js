@@ -36,6 +36,13 @@ app.get('/list', async (req, res) => {
     console.log("Returning all the data");
 })
 
+app.post('/list/one', async (req, res) => {
+    const question = await Questions.findOne({questionTitle: req.body.name});
+    res.json(question);
+    console.log("Returning one result");
+    console.log(question);
+})
+
 
 
 

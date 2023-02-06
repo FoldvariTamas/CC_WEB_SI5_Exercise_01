@@ -3,6 +3,12 @@ const app = express()
 const Mongoose = require("mongoose")
 app.use(express.json())
 const Questions = require("./questionSchema")
+const cors = require('cors')
+app.use(
+    cors({
+        origin: "*"
+    })
+)
 
 
 app.get('/', async (req, res) => {
@@ -12,6 +18,7 @@ app.get('/', async (req, res) => {
 })
 
 app.post('/', async (req, res) => {
+    console.log("post req");
     const newQuestion = req.body;
     const questions = await Questions.create(newQuestion);
     res.json(questions);

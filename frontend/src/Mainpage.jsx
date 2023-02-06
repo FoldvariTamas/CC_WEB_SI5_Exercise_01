@@ -1,7 +1,12 @@
+import QuestionFrom from './QuestionForm';
+
+
+
 function App() {
   return (
     <div>
       Start here
+      <QuestionFrom/>
     </div>
   );
 }

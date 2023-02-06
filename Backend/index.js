@@ -18,11 +18,16 @@ app.get('/', async (req, res) => {
 })
 
 app.post('/', async (req, res) => {
-    console.log("post req");
-    const newQuestion = req.body;
-    const questions = await Questions.create(newQuestion);
-    res.json(questions);
-    console.log("New question created");
+    try {
+        const newQuestion = req.body;
+        const questions = await Questions.create(newQuestion);
+        //res.json(questions);
+        console.log("New question created");
+        res.json({message: "Correct"});
+    } catch (e) {
+        console.log(e.message)
+        res.json({message: "Incorrect"});
+    }
 })
 
 

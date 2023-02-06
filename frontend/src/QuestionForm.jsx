@@ -11,31 +11,32 @@ function QuestionFrom() {
   const [desc, setDesc] = useState("");
   const [name, setName] = useState("");
   const [text, setText] = useState("");
+  const [labelText, setLabelText] = useState("");
 
   function inputFunction(e, func) {
     func(e.target.value);
   }
 
-  async function submitFunction() {
-    // console.log(`${title} ${desc} ${name} ${text}`)
-    await fetch('http://localhost:3001/',{
+  async function submitFunction(e) {
+    e.preventDefault()
+
+    const response = await fetch('http://localhost:3001/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(    {
+      body: JSON.stringify({
         questionTitle: title,
         questionDescription: desc,
         answers: [{
-            name: name,
-            text: text
+          name: name,
+          text: text
         }]
-    })
+      })
     });
-    setTimeout(() => {
-      console.log("Delayed for 1 second.");
-    }, 1000)
+    const data = await response.json();
+    setLabelText(data.message)
   }
 
   return <form>
@@ -55,8 +56,8 @@ function QuestionFrom() {
     Text:
     <input type="text" name="text" value={text} onChange={e => inputFunction(e, setText)}/>
   </label>
-  <input onClick={submitFunction} type="submit" value="Submit" />
-  <button onClick={submitFunction}>SubmitButton</button>
+  <input onClick={e => submitFunction(e)} type="submit" value="Submit" />
+  <label>{labelText}</label>
 </form>
 }
 

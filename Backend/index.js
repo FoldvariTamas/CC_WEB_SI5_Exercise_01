@@ -30,6 +30,11 @@ app.post('/', async (req, res) => {
     }
 })
 
+app.get('/list', async (req, res) => {
+    const questions = await Questions.find({});
+    res.json(questions);
+    console.log("Returning all the data");
+})
 
 
 

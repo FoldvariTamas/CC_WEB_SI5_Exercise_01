@@ -1,3 +1,6 @@
+const mongoose = require("mongoose")
+const Questions = require("./questionSchema")
+
 const starterData = [
     {
         questionTitle: "What is Bootsrap?",
@@ -26,3 +29,15 @@ const starterData = [
         ]
     }
 ]
+
+mongoose.connect("mongodb://0.0.0.0:27017/questions_and_answers").then(() => {
+    console.log("MongoDB connection established!");
+})
+
+
+function populate(data) {
+    data.map(async e =>  {
+       const questions = await Questions.create(e)
+    } )
+}
+populate(starterData)

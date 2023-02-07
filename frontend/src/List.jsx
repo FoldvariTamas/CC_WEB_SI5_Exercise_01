@@ -34,10 +34,17 @@ function List() {
     .then(data => {
       setOneQuestion(data)
       setArrlength(data.answers.length)
-      console.log(data.answers.length)
+      console.log(data._id)
     })
 
-    // window.open("/one")
+    /// TO DO ///
+    // id-t belevinni a route linkjébe
+    // a linkből kihámozni az id-t
+    // id alapján post fetch a servernek, bodyban az ID-val
+    // a megfelelő endpoint a requestből kiveszi a id-t, és az adatbézisban megkeresi a megfelelő objektumot
+    // az objektumot visszaküldeni json-ben
+    // a fetch responsát megjeleníteni jsx-ben
+    // window.open(`/one/${data._id}`)
   }
 
   function NewWindow() {

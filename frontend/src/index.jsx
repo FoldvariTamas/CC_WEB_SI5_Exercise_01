@@ -14,7 +14,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}/>
         <Route path="/asd123" element={<Asd123 />}/>
-        <Route path="/list" element={<List />}/>
+        {/* <Route path="/list" element={<List />}/> */}
         <Route path="/one" element={<One />}/>
       </Routes>
     </BrowserRouter>

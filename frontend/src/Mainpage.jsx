@@ -1,5 +1,5 @@
 import QuestionFrom from './QuestionForm';
-
+import {List, One} from './List';
 
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
     <div>
       Start here
       <QuestionFrom/>
+      <List/>
     </div>
   );
 }

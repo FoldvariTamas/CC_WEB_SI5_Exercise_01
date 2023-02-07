@@ -8,6 +8,7 @@ function One() {
 function List() {
   const [questions, setData] = useState([])
   const [oneQuestion, setOneQuestion] = useState({})
+  const [arrLength, setArrlength] = useState(0)
 
   useEffect(() => {
     console.log("Useeffect")
@@ -32,10 +33,21 @@ function List() {
         // 4. Setting *dogImage* to the image url that we received from the response above
     .then(data => {
       setOneQuestion(data)
-      console.log(data)
+      setArrlength(data.answers.length)
+      console.log(data.answers.length)
     })
 
     // window.open("/one")
+  }
+
+  function NewWindow() {
+    return (
+      <div>
+        <p>{oneQuestion.questionTitle}</p>
+        <p>{oneQuestion.questionDescription}</p>
+        {arrLength !== 0 && oneQuestion.answers.map(x => <div><p>{x.name}</p><p>{x.text}</p></div>)}
+      </div>
+    )
   }
   
   return (
@@ -45,8 +57,7 @@ function List() {
       <div>
         <p>{oneQuestion.questionTitle}</p>
         <p>{oneQuestion.questionDescription}</p>
-{/*         <p>{oneQuestion.answers.name}</p><br></br>
-        <p>{oneQuestion.answers.text}</p> */}
+        {arrLength !== 0 && oneQuestion.answers.map(x => <div><p>{x.name}</p><p>{x.text}</p></div>)}
       </div>
     </div>
   )
